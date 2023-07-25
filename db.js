@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://hajaina:mdpprom13@cluster0.rcc3ot6.mongodb.net/CrudDB', {
+mongoose.connect('mongodb+srv://hajaina:mdpprom13@cluster0.rcc3ot6.mongodb.net/touriste', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }, (err) => {
