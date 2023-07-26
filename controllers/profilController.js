@@ -80,4 +80,21 @@ router.post('/traitementLogin', (req, res) => {
     });
 });
 
+router.post('/inscription', (req, res) => {
+    var profil = new Profil({
+        nom: req.body.nom,
+        prenom: req.body.prenom,
+        adresse: req.body.adresse,
+        user: req.body.user,
+        mdp: req.body.mdp,
+    });
+    profil.save((err, doc) => {
+        if (!err) { 
+            res.send(doc); 
+        }
+        else { 
+            console.log('Error in Client Save :' + JSON.stringify(err, undefined, 2));
+         }
+    });
+});
 module.exports = router;
