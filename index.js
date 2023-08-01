@@ -7,6 +7,9 @@ var employeeController = require('./controllers/employeeController.js');
 var olonaController = require('./controllers/olonaController.js');
 var profilController = require('./controllers/profilController.js');
 var endroitPopulaire = require('./controllers/endroitPopulaireController.js');
+var parc = require('./controllers/parcController.js');
+var plage = require('./controllers/plageController.js');
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -19,3 +22,5 @@ app.use('/employees', employeeController);
 app.use('/olona', olonaController);
 app.use('/profil', profilController);
 app.use('/endroitPopulaire', endroitPopulaire);
+app.use('/parc', parc);
+app.use('/plage', plage);
