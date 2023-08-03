@@ -22,5 +22,26 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.put('/insertCommentaireParc', (req, res) => {
+    const filter = { nom : req.body.nom };
+    const updateDoc = {
+        $push:{
+            commentaire:{
+                date: req.body.date,
+                text: req.body.text,
+                user : req.body.user,
+            }
+        },
+      };
+        Parc.updateOne(filter, updateDoc, function (err, docs) {
+            if (err){
+                res.send(err);
+            }
+            else{
+                res.send(docs);
+            }
+        });
+});
+
 
 module.exports = router;
