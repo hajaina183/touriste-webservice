@@ -34,7 +34,7 @@ router.put('/insertCommentairePlage', (req, res) => {
             }
         },
       };
-        Parc.updateOne(filter, updateDoc, function (err, docs) {
+        Plage.updateOne(filter, updateDoc, function (err, docs) {
             if (err){
                 res.send(err);
             }

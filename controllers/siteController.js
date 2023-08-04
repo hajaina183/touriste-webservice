@@ -33,7 +33,7 @@ router.put('/insertCommentaireSite', (req, res) => {
             }
         },
       };
-        Parc.updateOne(filter, updateDoc, function (err, docs) {
+        Site.updateOne(filter, updateDoc, function (err, docs) {
             if (err){
                 res.send(err);
             }
