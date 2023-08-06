@@ -22,6 +22,32 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/listeCommentaire', (req, res) => {
+    var plage = new Plage({
+        nom: req.body.nom
+    });
+    Plage.find({ nom: req.body.nom }, function (err, docs) {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des commentaires.' });
+        }
+
+        if (!docs || docs.length === 0) {
+            console.log('Aucun plage trouvé avec ce nom.' )
+            return res.status(404).json({ message: 'Aucun plage trouvé avec ce nom.' });
+        }
+
+        const plageTrouve = docs[0];
+
+        if (!plageTrouve.commentaire || plageTrouve.commentaire.length === 0) {
+            console.log('Aucun commentaire trouvé pour ce plage. taille 0')
+            return res.status(404).json({ message: 'Aucun commentaire trouvé pour ce plage.' });
+        }
+
+        res.json(plageTrouve.commentaire);
+    });
+});
+
 
 router.put('/insertCommentairePlage', (req, res) => {
     const filter = { nom : req.body.nom };
