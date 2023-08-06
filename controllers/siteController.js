@@ -22,6 +22,32 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/listeCommentaire', (req, res) => {
+    var site = new Site({
+        nom: req.body.nom
+    });
+    Site.find({ nom: req.body.nom }, function (err, docs) {
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des commentaires.' });
+        }
+
+        if (!docs || docs.length === 0) {
+            console.log('Aucun site trouvé avec ce nom.' )
+            return res.status(404).json({ message: 'Aucun site trouvé avec ce nom.' });
+        }
+
+        const siteTrouve = docs[0];
+
+        if (!siteTrouve.commentaire || siteTrouve.commentaire.length === 0) {
+            console.log('Aucun commentaire trouvé pour ce site. taille 0')
+            return res.status(404).json({ message: 'Aucun commentaire trouvé pour ce site.' });
+        }
+
+        res.json(siteTrouve.commentaire);
+    });
+});
+
 router.put('/insertCommentaireSite', (req, res) => {
     const filter = { nom : req.body.nom };
     const updateDoc = {
